@@ -179,7 +179,7 @@ x <- 15
 x
 
 # R is case sensitive
-X     # Returns an error
+X            # returns an error
 
 # You can also use -> as an assignment operator
 15 -> x      # Can you think of why this might be a bad idea?
@@ -337,7 +337,7 @@ length(mynumbers)
 ## What is the sum of mynumbers?
 sum(mynumbers)
 
-# Creating customize vectors - Character
+# Creating customized vectors - Character
 
 # Goal: Create a vector called fruit that contains the words apple, orange, and kiwi
 fruit <- c("apple", "orange", "kiwi")
@@ -373,7 +373,7 @@ class(eggs)  # numeric values will be coerced into characters
 sum(eggs)    # sum() must be used on numeric values
 
 # Goal: Create a new object called numbereggs that contains
-# the values from eggs treated as a numeric vector
+# the values from eggs, but forced to act as numeric values
 numbereggs <- as.numeric(eggs)
 numbereggs   # What do you notice?
 
@@ -389,8 +389,7 @@ max(numbereggs)
 # Missing values are represented by NA
 
 # Goal: Calculate basic statistics while ignoring the NAs
-mean(numbereggs, na.rm = TRUE)
-# na.rm is an optional argument in several similar functions
+mean(numbereggs, na.rm = TRUE)     # na.rm is an optional argument in several similar functions
 min(numbereggs, na.rm = TRUE)
 max(numbereggs, na.rm = TRUE)
 
@@ -400,31 +399,35 @@ max(numbereggs, na.rm = TRUE)
 
 # Each value of numbereggs is NA
 numbereggs == NA     # doesn't work
-is.na(neweggs)    # works
+is.na(neweggs)       # works
 
 # Each value of numbereggs is not NA
-!is.na(numbereggs)
+!is.na(numbereggs)   # works
 
 # More complex functions and processes will often deal with
 # missing values in a more reasonable way
 # Example: visualizations, most statistical tests and models ignore NAs by default
 
+### Bonus Material ###
 # ---- Creating a Function ----
+# Users can create their own function, which contains a snippet of
+# code with instructions to apply using the specified arguments
+
 # newFunction <- function(argument) {do_this_with_argument}
 
-# Create a function that returns a value + 4
+# Create a function named addFour that returns a value + 4
 addFour <- function(x) {x + 4}
 
 addFour(100)         # Apply addFour()
 
-## Create a function that returns the sum of the minimum and maximum values in a set of values
+## Create a function named sumExtremes that returns the sum of the minimum and maximum values in a set of values
 sumExtremes <- function(values) {
      min(values) + max(values)
      }
 
 sumExtremes(1:10)     # Apply sumExtremes()
 
-# Create a function that finds the total cost by adding tax to the original price
+## Create a function names addTax that finds the total cost by adding tax to the original price
 addTax <- function(price, tax) {
      price + price*(tax/100)
      }
@@ -437,17 +440,73 @@ addTax <- function(price, tax = 12) {
      }
 
 addTax(300)       # Apply addTax() using default value of optional argument
-
 addTax(300, 14)   # Apply addTax() using user defined value of optional argument
 
-# Create a function that returns TRUE if the sum of a set of values is greater than another value
+# Create a function named isSumGreater that tests if the sum of a set of values is greater than another value
 isSumGreater <- function(values, greater_than) {
      sum(values) > greater_than
      }
+
 isSumGreater(c(1, 4, 2, 9), 20)      # Apply isSumGreater()
 
 # ---- IfElse, If, and If-Else Statements ----
+# These statements use the results of conditional
+# statements (TRUE and FALSE) to determine what to do next
+
 # ifelse(conditional_statement, value_if_true, value_if_false)
+ifelse(10 > 5, "it's larger", "it's smaller")
+
 # if(conditional_statement) {do_this}
+if(10 > 5) {print("it's larger")}
+
 # if(conditional_statement) {do_this_if_true} else {do_this_if false}
+if(10 > 5) {print("it's larger")} else {print("it's smaller")}
+
+if(10 > 5) {
+  print("it's larger")
+  } else {
+    print("it's smaller")
+    }
+
+## What would the value of results be after this code is executed?
+if(15 %in% 1:6) {
+  results <- "15 is found in the integers 1 through 6"
+} else {
+  if(15 < 12) {
+    results <- "15 is greater than 12"
+  } else {
+    results <- "neither of these statements are true"
+  }
+}
+
+## Troubleshooting: What should you do to fix this code so that the results are correct?
+if(15 %in% 1:6) {
+  results <- "15 is found in the integers 1 through 6"
+} else {
+  if(15 > 12) {
+    results <- "15 is greater than 12"
+  } else {
+    results <- "neither of these statements are true"
+  }
+}
+
+# ---- Packages ----
+# Packages are user-created collections of objects, functions, and datasets that
+# can be installed to RStudio and used to accomplish common tasks
+
+# Some of the most commonly used packages include:
+## ggplot2    for data visualization
+## dplyr      for data wrangling
+## tidyr      for data cleaning
+## lubridate  for dealing with dates and times
+## stringr    for dealing with strings (characters)
+
+# These packages are not covered in this workshop.
+# To demonstrate how a package is used, install and download the lubridate package
+install.packages("lubridate")   # installs the package to your computer; must be connected to the internet
+
+library(lubridate)  # loads the package to your current R session, giving you access to its contents
+
+leap_year(2021)     # the leap_year function from the lubridate package evaluates whether a particular year was a leap year 
+
 
