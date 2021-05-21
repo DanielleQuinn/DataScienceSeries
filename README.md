@@ -1,4 +1,4 @@
-###Fundamentals of R and RStudio
+### Fundamentals of R and RStudio
 
 To download the materials listed below, *right click on each link and select Save Link As...*.
 
