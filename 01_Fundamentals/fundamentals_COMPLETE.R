@@ -399,7 +399,7 @@ max(numbereggs, na.rm = TRUE)
 
 # Each value of numbereggs is NA
 numbereggs == NA     # doesn't work
-is.na(neweggs)       # works
+is.na(numbereggs)       # works
 
 # Each value of numbereggs is not NA
 !is.na(numbereggs)   # works
@@ -408,7 +408,7 @@ is.na(neweggs)       # works
 # missing values in a more reasonable way
 # Example: visualizations, most statistical tests and models ignore NAs by default
 
-### Bonus Material ###
+# ---- Bonus Material ----
 # ---- Creating a Function ----
 # Users can create their own function, which contains a snippet of
 # code with instructions to apply using the specified arguments
