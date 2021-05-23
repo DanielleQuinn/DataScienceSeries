@@ -1,0 +1,57 @@
+"park_code","park_name","state","acres","latitude","longitude","day","month","year","annual_pass","per_person"
+"ACAD","Acadia National Park","ME",47390,44.35,-68.21,26,2,1919,55,15
+"ARCH","Arches National Park","UT",76519,38.68,-109.57,12,11,1971,55,15
+"BADL","Badlands National Park","SD",242756,43.75,-102.5,10,11,1978,55,15
+"BIBE","Big Bend National Park","TX",801163,29.25,-103.25,12,6,1944,55,15
+"BISC","Biscayne National Park","FL",172924,25.65,-80.08,28,6,1980,0,0
+"BLCA","Black Canyon of the Gunnison National Park","CO",32950,38.57,-107.72,21,11,1999,55,15
+"BRCA","Bryce Canyon National Park","UT",35835,37.57,-112.18,25,2,1928,40,20
+"CANY","Canyonlands National Park","UT",337598,38.2,-109.93,12,9,1964,55,15
+"CARE","Capitol Reef National Park","UT",241904,38.2,-111.17,18,12,1971,35,10
+"CAVE","Carlsbad Caverns National Park","NM",46766,32.17,-104.44,14,5,1930,NA,15
+"CHIS","Channel Islands National Park","CA",249561,34.01,-119.42,5,3,1980,0,0
+"CONG","Congaree National Park","SC",26546,33.78,-80.78,10,11,2003,0,0
+"CRLA","Crater Lake National Park","OR",183224,42.94,-122.1,22,5,1902,55,15
+"CUVA","Cuyahoga Valley National Park","OH",32950,41.24,-81.55,11,11,2000,0,0
+"DENA","Denali National Park and Preserve","AK",3372402,63.33,-150.5,26,2,1917,45,15
+"DEVA","Death Valley National Park","CA",4740912,36.24,-116.82,31,10,1994,55,15
+"DRTO","Dry Tortugas National Park","FL",64701,24.63,-82.87,26,11,1992,NA,15
+"EVER","Everglades National Park","FL",1508538,25.32,-80.93,30,5,1934,55,15
+"GAAR","Gates Of The Arctic National Park and Preserve","AK",7523898,67.78,-153.3,2,12,1980,0,0
+"GLAC","Glacier National Park","MT",1013572,48.8,-114,11,5,1910,70,20
+"GLBA","Glacier Bay National Park and Preserve","AK",3224840,58.5,-137,2,12,1980,0,0
+"GRBA","Great Basin National Park","NV",77180,38.98,-114.3,27,11,1986,0,0
+"GRCA","Grand Canyon National Park","AZ",1217403,36.06,-112.14,26,2,1919,70,20
+"GRSA","Great Sand Dunes National Park and Preserve","CO",42984,37.73,-105.51,24,9,2004,45,15
+"GRSM","Great Smoky Mountains National Park","TN",521490,35.68,-83.53,14,6,1934,0,0
+"GRTE","Grand Teton National Park","WY",309995,43.73,-110.8,26,2,1929,70,15
+"GUMO","Guadalupe Mountains National Park","TX",86416,31.92,-104.87,15,11,1966,35,10
+"HALE","Haleakala National Park","HI",29094,20.72,-156.17,1,7,1961,55,15
+"HAVO","Hawaii Volcanoes National Park","HI",323431,19.38,-155.2,1,8,1916,55,15
+"HOSP","Hot Springs National Park","AR",5550,34.51,-93.05,4,3,1921,0,0
+"ISRO","Isle Royale National Park","MI",571790,48.1,-88.55,3,4,1940,60,7
+"JOTR","Joshua Tree National Park","CA",789745,33.79,-115.9,31,10,1994,55,15
+"KATM","Katmai National Park and Preserve","AK",3674530,58.5,-155,2,12,1980,0,0
+"KEFJ","Kenai Fjords National Park","AK",669983,59.92,-149.65,2,12,1980,0,0
+"KOVA","Kobuk Valley National Park","AK",1750717,67.55,-159.28,2,12,1980,0,0
+"LACL","Lake Clark National Park and Preserve","AK",2619733,60.97,-153.42,2,12,1980,0,0
+"LAVO","Lassen Volcanic National Park","CA",106372,40.49,-121.51,9,8,1916,55,15
+"MACA","Mammoth Cave National Park","KY",52830,37.18,-86.1,1,7,1941,0,0
+"MEVE","Mesa Verde National Park","CO",52122,37.18,-108.49,29,6,1906,55,15
+"MORA","Mount Rainier National Park","WA",235625,46.85,-121.75,2,3,1899,35,10
+"NOCA","North Cascades National Park","WA",504781,48.7,-121.2,2,10,1968,0,0
+"OLYM","Olympic National Park","WA",922651,47.97,-123.5,29,6,1938,55,15
+"PEFO","Petrified Forest National Park","AZ",93533,35.07,-109.78,9,12,1962,45,15
+"PINN","Pinnacles National Park","CA",26606,36.48,-121.16,10,1,2013,55,15
+"REDW","Redwood National Park","CA",112512,41.3,-124,2,10,1968,0,0
+"ROMO","Rocky Mountain National Park","CO",265828,40.4,-105.58,26,1,1915,70,20
+"SAGU","Saguaro National Park","AZ",91440,32.25,-110.5,14,10,1994,45,15
+"SEKI","Sequoia and Kings Canyon National Parks","CA",865952,36.43,-118.68,25,9,1890,60,20
+"SHEN","Shenandoah National Park","VA",199045,38.53,-78.35,26,12,1935,55,15
+"THRO","Theodore Roosevelt National Park","ND",70447,46.97,-103.45,10,11,1978,55,15
+"VOYA","Voyageurs National Park","MN",218200,48.5,-92.88,8,4,1975,0,0
+"WICA","Wind Cave National Park","SD",28295,43.57,-103.48,9,1,1903,0,0
+"WRST","Wrangell - St Elias National Park and Preserve","AK",8323148,61,-142,2,12,1980,0,0
+"YELL","Yellowstone National Park","WY",2219791,44.6,-110.5,1,3,1872,70,20
+"YOSE","Yosemite National Park","CA",761266,37.83,-119.5,1,10,1890,70,20
+"ZION","Zion National Park","UT",146598,37.3,-113.05,19,11,1919,70,20
