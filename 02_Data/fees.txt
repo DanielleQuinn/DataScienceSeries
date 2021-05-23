@@ -1,0 +1,57 @@
+park_code	park_name	annual_pass	per_person
+BRCA	Bryce Canyon National Park	40	20
+GLAC	Glacier National Park	70	20
+GRCA	Grand Canyon National Park	70	20
+ROMO	Rocky Mountain National Park	70	20
+SEKI	Sequoia and Kings Canyon National Parks	60	20
+YELL	Yellowstone National Park	70	20
+YOSE	Yosemite National Park	70	20
+ZION	Zion National Park	70	20
+ACAD	Acadia National Park	55	15
+ARCH	Arches National Park	55	15
+BADL	Badlands National Park	55	15
+BIBE	Big Bend National Park	55	15
+BLCA	Black Canyon of the Gunnison National Park	55	15
+CANY	Canyonlands National Park	55	15
+CAVE	Carlsbad Caverns National Park		15
+CRLA	Crater Lake National Park	55	15
+DENA	Denali National Park and Preserve	45	15
+DEVA	Death Valley National Park	55	15
+DRTO	Dry Tortugas National Park		15
+EVER	Everglades National Park	55	15
+GRSA	Great Sand Dunes National Park and Preserve	45	15
+GRTE	Grand Teton National Park	70	15
+HALE	Haleakala National Park	55	15
+HAVO	Hawaii Volcanoes National Park	55	15
+JOTR	Joshua Tree National Park	55	15
+LAVO	Lassen Volcanic National Park	55	15
+MEVE	Mesa Verde National Park	55	15
+OLYM	Olympic National Park	55	15
+PEFO	Petrified Forest National Park	45	15
+PINN	Pinnacles National Park	55	15
+SAGU	Saguaro National Park	45	15
+SHEN	Shenandoah National Park	55	15
+THRO	Theodore Roosevelt National Park	55	15
+CARE	Capitol Reef National Park	35	10
+GUMO	Guadalupe Mountains National Park	35	10
+MORA	Mount Rainier National Park	35	10
+ISRO	Isle Royale National Park	60	7
+BISC	Biscayne National Park	0	0
+CHIS	Channel Islands National Park	0	0
+CONG	Congaree National Park	0	0
+CUVA	Cuyahoga Valley National Park	0	0
+GAAR	Gates Of The Arctic National Park and Preserve	0	0
+GLBA	Glacier Bay National Park and Preserve	0	0
+GRBA	Great Basin National Park	0	0
+GRSM	Great Smoky Mountains National Park	0	0
+HOSP	Hot Springs National Park	0	0
+KATM	Katmai National Park and Preserve	0	0
+KEFJ	Kenai Fjords National Park	0	0
+KOVA	Kobuk Valley National Park	0	0
+LACL	Lake Clark National Park and Preserve	0	0
+MACA	Mammoth Cave National Park	0	0
+NOCA	North Cascades National Park	0	0
+REDW	Redwood National Park	0	0
+VOYA	Voyageurs National Park	0	0
+WICA	Wind Cave National Park	0	0
+WRST	Wrangell - St Elias National Park and Preserve	0	0
