@@ -1,139 +1,183 @@
-# ---- Project Description ----
-# This project is used for ...
-# It was last updated by ... on ...
+# ---- Packages ----
+# Packages are user-created collections of objects, functions, and datasets that
+# can be installed to RStudio and used to accomplish common tasks
 
-R.version.string
+# Some of the most commonly used packages include:
+## ggplot2    for data visualization
+## dplyr      for data wrangling
+## tidyr      for data cleaning
+## lubridate  for dealing with dates and times
+## stringr    for dealing with strings (characters)
 
-# ---- Load packages ----
-library(lubridate)
-library(stringr)
+# Download and install the dplyr package (one time)
+install.packages("dplyr")   # must be connected to the internet
+
+# Load the dplyr package to your current session (every time)
 library(dplyr)
 
-# Note: If an error is produced saying there is no such package
-# it means you need to install the package using install.packages()
+# Best practice: add libraries at the top of your script
 
-# ---- Importing Data ----
-# List the files & folders that are available in your project
+# Masked Functions
+# It is not uncommon for multiple packages to contain a function with the
+# same name and a different use.
+# When loading the package using library(), RStudio will warn you if
+# the package masks the functions of other packages.
+# The most recently loaded package becomes the default choice.
+# You can specify which version of a function you want to use using
+# packageName::functionName()
+
+# Example:
+# MASS::select(x) will apply the select function as it is written in the MASS package
+# dplyr::select(x) will apply the elect function as it is written in the dplyr package
+
+# ---- Import Parks Data ----
+# Look at the names of the files available in your working directory
 list.files()
 
-# List the files and folders available in the "data" folder
-list.files("data")
+# parks.csv is in "comma separated values" format
+parks <- read.csv("parks.csv") # Create an object called parks containing the data frame
 
-# Comma Separated Values (.csv)
-data <- read.csv("data/fish.csv")
+# ---- QA/QC Techniques I: Exploring Data ----
+# Explore Data: preview
+head(parks)    # Print the first six rows
+tail(parks)    # Print the last six rows
+View(parks)    # View the data in a separate tab
 
-# Tab Delimited Values (.txt)
-taxonomy <- read.delim("data/taxonomy.txt")
+# Explore Data: structure
+nrow(parks)   # How many rows?
+ncol(parks)    # How many columns?
+dim(parks)     # How many rows and columns?
+names(parks)   # Print column names
 
-# ---- Exploring Data Frames ----
-View(data) # View data in a new tab
-View(taxonomy)
+# Explore Data: class
+str(parks)     # Print data structure
 
-dim(data) # Number of rows and columns
-nrow(data) # Number of rows
-ncol(data) # Number of columns
+# ---- Interacting with Data Frames ----
+# Interact with Data: columns as vectors
+# Columns can be extracted as vectors using $
+# objectname$component
 
-head(data) # Display the first six rows
-tail(data) # Display the last six rows
-names(data) # Display the names of each column
+parks$park_name   # Look at the values in the park_name column
+parks$acres
 
-summary(data) # Summarise each column
-str(data) # Display the structure of the object
-glimpse(data) # Display the structure of the object using {dplyr}
+# Interact with Data: indexing
+# [*] represents the position of each value in an object
 
-# ---- Factors ----
+# vectors: one dimensional; one position required
+parks$park_name[4]  # Look at the value in the fourth position of the vector
 
-##########################################################################
-## By default ...                                                        #
-## R < 4.0 character columns in imported data are treated as FACTORS     #
-## R >= 4.0 character columns in imported data are treated as CHARACTERS #
-##########################################################################
+# data frames: two dimensional, two positions required
+parks[3, 2]             # Look at the value in the third row, second column of the data frame
+parks[3, "park_name"]   # Select the column based on column name
 
-# Factors are variables that have levels / categories / groups
+## Goal: Find the tenth value in the park_code column
+## (a) indexing from a vector
+parks$park_code[10]
+## (b) indexing from a data frame using a numeric value to select the column
+parks[10, 1]
+## (c) indexing from a data frame using a character value to select the column
+parks[10, "park_code"]
 
-class(data$habitat) # If R < 4.0, this will be a factor. If R >= 4.0, this will be a character.
+# Indexing used to be an absolutely essential tool!
+# The move toward alternative methods of interacting with data frames
+# means that it is still quite important to be familiar with, but less critical
 
-# Step One: Do we want to treat this variable as a factor or a character?
+# ---- QA/QC Techniques II: Assessing Data ----
+# Assessing Data: numeric variables
+summary(parks) # Summary statistics
 
-# Step Two: Do we need to change it?
-class(data$habitat)
+# Assessing Data: character variables
+unique(parks$state)         # Print unique state values
+length(unique(parks$state)) # How many unique state values?
 
-# Step Three: If so...
+# Simple Tables
+table(parks$state) # Count occurrences of each state
 
-## Change a character column to a factor
-class(data$habitat)
-data$habitat <- as.factor(data$habitat)
-class(data$habitat)
-levels(data$habitat) # What levels (categories) do we have?
-str(data) # How does this change the structure?
+# Simple Visualizations: Univariate
+hist(parks$acres) # Histogram of acres
+barplot(table(parks$state))  # Barplot of states
 
-## Change a factor column to a character
-class(data$habitat)
-data$habitat <- as.character(data$habitat)
-class(data$habitat)
+# Simple Visualizations: Multivariate
+plot(parks)                        # Scatterplots of all variables
+plot(parks$acres ~ parks$year)     # Scatterplot of acres by year
+boxplot(parks$acres ~ parks$state) # Distribution of acres by state
 
-# WARNING: What happens if you tried to switch from a factor to a number?
-test_sites <- as.factor(c(34, 34, 35, 35, 36, 36)) # Create a new object to test this out on
-test_sites # This is what it looks like
-class(test_sites) # It is a factor
-levels(test_sites) # It has three levels
-as.numeric(test_sites) # Why do you think this happens?
+## Each park should have exactly one row in the data
+## Which technique(s) would you use to confirm that no parks are repeated?
+nrow(parks)                     # 56 rows
+length(unique(parks$park_name)) # 56 unique park names
+# or
+table(parks$park_name) # Scroll through output and make sure they are all 1
 
-# If you use R >= 4.0 you are less likely to run into trouble with factors!
+# ---- Import Fees Data ----
+# fees.txt is in "tab separated values" format
+fees <- read.delim("fees.txt") # Create an object called fees containing the fee data
+
+## Explore the data and perform some QA/QC
+head(fees)
+dim(fees)
+str(fees)
+summary(fees)
+unique(fees$park_name)
 
 # ---- Joining Data ----
-# How might we want to combine these data sets?
-head(data)
-head(taxonomy)
+# There is information in fees that we would like to
+# add to the original parks data
 
-# Demonstration Using Test Data
-test_survey1 <- data.frame(person = c("A", "B", "C", "D"),
-                           colour = c("red", "blue", "green", "blue"))
+head(parks, n = 2)  # optional argument n specifies the number of rows to print
+head(fees, n = 2)
 
-test_survey2 <- data.frame(person = c("A", "B", "C", "E", "F", "G"),
-                           animal = c("dog", "dog", "cat", "horse", "dog", "cat"))
+## How would you do this manually?
+# Look up the park code or name
+# Find the corresponding annual pass and per person values
+# Add them to the parks data
 
-test_survey1
-test_survey2
+# When joining data, consider:
+# What variable(s) will be used to "match" records?
+# Does anything need to be edited to make this work?
+names(parks)
+names(fees)
 
-# Functions in the _join(x, y) family add columns from y to x, matching rows based on the key(s)
+# dplyr::left_join(x, y) : return all rows from x and all 
+# columns from x and y, matching each row based on 
+# column names in common
+left_join(parks, fees)
 
-# left_join(x, y)   : keeps all rows that appear in x
-left_join(test_survey1, test_survey2)
+# Create a new object that contains this updated data set
+parks_updated <- left_join(parks, fees)
 
-# inner_join(x, y)   : keeps all rows that appear in BOTH x and y
-inner_join(test_survey1, test_survey2)
+head(parks_updated)
 
-# full_join(x, y)   : keeps all rows that apear in EITHER x or y
-full_join(test_survey1, test_survey2)
+# QA/QC to confirm that this has worked
+head(fees, n = 1) # Look at top row of fees
+                  # Bryce Canyon has annual pass of 40
+View(parks_updated)
 
+# ---- Import Coordinate Data ----
+# coords.csv is in "comma separated values" format
+coords <- read.csv("coordinates.csv") # Create an object called coords containing the coordinates data
 
-## Which join do we want to use to combine our two data frames?
-head(data)
-head(taxonomy)
+## Explore
+# Use functions learned above to explore the data
+## QA/QC
+# Use techniques learned above to assess the data
 
-left_join(data, taxonomy)
+# Join and update parks_updated object
+left_join(parks_updated, coords)  # Test run
+parks_updated <- left_join(parks_updated, coords) # Make it official!
 
-# Make this change permanent
-data <- left_join(data, taxonomy)
+head(parks_updated)
 
-# ---- Converting Cases ----
-# Is there anything we might want to do to clean up the scientific names?
-data$scientific_name
+# ---- Exporting Data ----
+# Before exporting the data, it's always a good idea
+# to do another round of QA/QC on the data frame you want to save
 
-# Convert to lower case
-str_to_lower(data$scientific_name)
+# NEVER overwrite your original data file #
 
-# Convert to title case
-str_to_title(data$scientific_name)
+# Export as a .csv
+write.csv(parks_updated, file = "parks_updated.csv",
+          row.names = FALSE)
 
-# Convert to sentence case
-str_to_sentence(data$scientific_name)
-
-# Make the change permanent by overwriting the existing column
-head(data) # Still in upper case
-data$scientific_name <- str_to_sentence(data$scientific_name)
-head(data) # Converted to title case
-
-# ---- Write (Save) Changes to a New File ----
-write.csv(data, "data/clean_fish.csv", row.names = FALSE)
+# Export as a .txt
+write.table(parks_updated, "parks_updated.txt",
+            sep = "\t", row.names = FALSE)
