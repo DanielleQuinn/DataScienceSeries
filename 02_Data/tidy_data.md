@@ -1,14 +1,5 @@
 ## Tidy Data  
 
-*"Tidy datasets are all alike, but messy datasets are each messy in their own way." ~ Hadley Wickham*  
-
-Tidy data is a standard way of mapping the meaning of a dataset to its structure. A dataset is  
-messy or tidy depending on how rows, columns and tables are matched up with observations,  
-variables and types. In tidy data:  
-1. Each variable forms a column.  
-2. Each observation forms a row.  
-3. Each cell contains exactly one piece of information.  
-
 The three most common problems with messy datasets:  
 - Column headers are values, not variable names.
 - Multiple variables are stored in one column.
@@ -27,6 +18,15 @@ Other common problems with messy datasets:
 - Using special characters in data  
 - Inclusion of metadata in data table  
 - Date formatting  
+
+*"Tidy datasets are all alike, but messy datasets are each messy in their own way." ~ Hadley Wickham*  
+
+Tidy data is a standard way of mapping the meaning of a dataset to its structure. A dataset is  
+messy or tidy depending on how rows, columns and tables are matched up with observations,  
+variables and types. In tidy data:  
+1. Each variable forms a column.  
+2. Each observation forms a row.  
+3. Each cell contains exactly one piece of information.  
 
 There are a few potential errors to be on the lookout for in your own data as well as data from collaborators or the Internet. If you are aware of the errors and the possible negative effect on downstream data analysis and result interpretation, it might motivate yourself and your project members to try and avoid them. Making small changes to the way you format your data in spreadsheets can have a great impact on efficiency and reliability when it comes to data cleaning and analysis.  
 
