@@ -1,129 +1,113 @@
-# ---- Project Description ----
-# This project is used for ...
-# It was last updated by ... on ...
+# ---- Packages ----
+# Packages are user-created collections of objects, functions, and datasets that
+# can be installed to RStudio and used to accomplish common tasks
 
-R.version.string
+# Download and install the dplyr package (one time)
 
-# ---- Load packages ----
-library(lubridate)
-library(stringr)
-library(dplyr)
+# Load the dplyr package to your current session (every time)
 
-# Note: If an error is produced saying there is no such package
-# it means you need to install the package using install.packages()
+# Best practice: add libraries at the top of your script
 
-# ---- Importing Data ----
-# List the files & folders that are available in your project
+# ---- Import Parks Data ----
+# Look at the names of the files available in your working directory
 
+# parks.csv is in "comma separated values" format
 
-# List the files and folders available in the "data" folder
+# ---- QA/QC Techniques I: Exploring Data ----
+# Explore Data: preview
+     # Print the first six rows
+     # Print the last six rows
+     # View the data in a separate tab
 
+# Explore Data: structure
+     # How many rows?
+     # How many columns?
+     # How many rows and columns?
+     # Print column names
 
-# Comma Separated Values (.csv)
+# Explore Data: class
+     # Print data structure
 
+# ---- Interacting with Data Frames ----
+# Interact with Data: columns as vectors
+# Columns can be extracted as vectors using $
+# objectname$component
 
-# Tab Delimited Values (.txt)
+# Interact with Data: indexing
+# [*] represents the position of each value in an object
 
+# vectors: one dimensional; one position required
 
-# ---- Exploring Data Frames ----
-    # View data in a new tab
+# data frames: two dimensional, two positions required
+     # Look at the value in the third row, second column of the data frame
+     # Select the column based on column name
 
+## Goal: Find the tenth value in the park_code column
+## (a) indexing from a vector
 
-    # Number of rows and columns
-    # Number of rows
-    # Number of columns
+## (b) indexing from a data frame using a numeric value to select the column
 
-    # Display the first six rows
-    # Display the last six rows
-    # Display the names of each column
-
-    # Summarise each column
-    # Display the structure of the object
-    # Display the structure of the object using {dplyr}
-
-# ---- Factors ----
-
-##########################################################################
-## By default ...                                                        #
-## R < 4.0 character columns in imported data are treated as FACTORS     #
-## R >= 4.0 character columns in imported data are treated as CHARACTERS #
-##########################################################################
-
-# Factors are variables that have levels / categories / groups
-
-class(data$habitat) # If R < 4.0, this will be a factor. If R >= 4.0, this will be a character.
-
-# Step One: Do we want to treat this variable as a factor or a character?
-
-# Step Two: Do we need to change it?
-
-# Step Three: If so...
-
-## Change a character column to a factor
+## (c) indexing from a data frame using a character value to select the column
 
 
-## Change a factor column to a character
+# ---- QA/QC Techniques II: Assessing Data ----
+# Assessing Data: numeric variables
+     # Summary statistics
 
+# Assessing Data: character variables
+     # Print unique state values
+     # How many unique state values?
 
-# WARNING: What happens if you tried to switch from a factor to a number?
-test_sites <- as.factor(c(34, 34, 35, 35, 36, 36)) # Create a new object to test this out on
-test_sites # This is what it looks like
-class(test_sites) # It is a factor
-levels(test_sites) # It has three levels
-as.numeric(test_sites) # Why do you think this happens?
+# Simple Tables
+     # Count occurrences of each state
 
-# If you use R >= 4.0 you are less likely to run into trouble with factors!
+# Simple Visualizations: Univariate
+     # Histogram of acres
+     # Barplot of states
+
+# Simple Visualizations: Multivariate
+     # Scatterplots of all variables
+     # Scatterplot of acres by year
+     # Distribution of acres by state
+
+## Each park should have exactly one row in the data
+## Which technique(s) would you use to confirm that no parks are repeated?
+
+# ---- Import Fees Data ----
+# fees.txt is in "tab separated values" format
+
+## Explore the data and perform some QA/QC
 
 # ---- Joining Data ----
-# How might we want to combine these data sets?
-head(data)
-head(taxonomy)
+# There is information in fees that we would like to
+# add to the original parks data
 
-# Demonstration Using Test Data
-test_survey1 <- data.frame(person = c("A", "B", "C", "D"),
-                           colour = c("red", "blue", "green", "blue"))
+# What variable(s) will be used to "match" records?
 
-test_survey2 <- data.frame(person = c("A", "B", "C", "E", "F", "G"),
-                           animal = c("dog", "dog", "cat", "horse", "dog", "cat"))
+# dplyr::left_join(x, y) : return all rows from x and all 
+# columns from x and y, matching each row based on 
+# column names in common
 
-test_survey1
-test_survey2
+# Create a new object that contains this updated data set
 
-# Functions in the _join(x, y) family add columns from y to x, matching rows based on the key(s)
+# QA/QC to confirm that this has worked
 
-# left_join(x, y)   : keeps all rows that appear in x
+# ---- Import Coordinate Data ----
+# coords.csv is in "comma separated values" format
 
+## Explore
+# Use functions learned above to explore the data
+## QA/QC-
+# Use techniques learned above to assess the data
 
-# inner_join(x, y)   : keeps all rows that appear in BOTH x and y
+## Join and update parks_updated object
 
+# ---- Exporting Data ----
+# Before exporting the data, it's always a good idea
+# to do another round of QA/QC on the data frame you want to save
 
-# full_join(x, y)   : keeps all rows that apear in EITHER x or y
+# NEVER overwrite your original data file #
 
+# Export as a .csv
 
-
-## Which join do we want to use to combine our two data frames?
-head(data)
-head(taxonomy)
-
-
-
-# Make this change permanent
-
-
-# ---- Converting Cases ----
-# Is there anything we might want to do to clean up the scientific names?
-
-
-# Convert to lower case
-
-
-# Convert to title case
-
-
-# Convert to sentence case
-
-
-# Make the change permanent by overwriting the existing column
-
-
-# ---- Write (Save) Changes to a New File ----
+# Export as a .txt
