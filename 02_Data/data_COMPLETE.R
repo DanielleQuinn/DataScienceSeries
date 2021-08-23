@@ -28,7 +28,7 @@ library(dplyr)
 
 # Example:
 # MASS::select(x) will apply the select function as it is written in the MASS package
-# dplyr::select(x) will apply the elect function as it is written in the dplyr package
+# dplyr::select(x) will apply the select function as it is written in the dplyr package
 
 # ---- Import Parks Data ----
 # Look at the names of the files available in your working directory
