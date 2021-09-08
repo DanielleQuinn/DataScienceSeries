@@ -86,7 +86,7 @@ exp(10)
 # What if we don't supply a value for the n argument?
 
 # Goal: Return 20 random values from a normal distribution
-# that has a mean of 100 and a standard deviation of 6
+# that has a mean of 10 and a standard deviation of 6
 
 ## Do these accomplish the same task?
 rnorm(20, 10, 6)                 # Why might this be a bad idea?
