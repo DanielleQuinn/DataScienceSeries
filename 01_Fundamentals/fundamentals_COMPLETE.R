@@ -130,8 +130,8 @@ rnorm() # produces an error
 ## What does this error message tell you?
 
 # Goal: Return 20 random values from a normal distribution
-# that has a mean of 100 and a standard deviation of 6
-rnorm(n = 20, mean = 100, sd = 6)
+# that has a mean of 10 and a standard deviation of 6
+rnorm(n = 20, mean = 10, sd = 6)
 
 ## Do these accomplish the same task?
 rnorm(20, 10, 6)                 # Why might this be a bad idea?
