@@ -1,0 +1,300 @@
+---
+title: "Communicating Results"
+author: "Danielle Quinn"
+date: "17/09/2021"
+output:
+  html_document:
+    code_folding: hide
+    toc: yes
+    toc_float: yes
+---
+
+### Plain Text Formatting {#topofpage}  
+
+You can apply plain text formatting. For instance, you can specify *italics* or **bold** using asterisks.  
+
+Other examples include superscript^2^, subscript~hello~ and ~~strikethrough~~.  
+
+Click [here](www.google.com) to go to the Google home page.
+
+### Exercise 1  
+
+
+***
+
+![](screen1.png)
+
+***
+
+Update the text below to match the screen shot above.  
+
+About R  
+R is a programming language and free yay! software environment for statistical computing and graphics supported by the R Core Team and the R Foundation for Statistical Computing. It is widely used by statisticians and data miners everyone for developing statistical software and data analysis. Click here to learn more!
+
+
+### Adding Code Chunks 
+
+Code is stored in *chunks* which are visible in the RMarkdown script by their gray background.
+
+```{r}
+# Everything in here is treated like regular R code
+2 + 2
+```
+
+By default the code chunk will show up in the rendered document in a grey box and the output will show up in a white box.
+
+### Exercise 2  
+Create a code chunk that  
+
+- imports the fish.txt data set  
+  - stores it in an object called fish  
+- calculates the average value of the count variable  
+  - stores it in a object called mean_count  
+- outputs the value of mean_count  
+
+```{r}
+fish <- read.delim("fish.txt")
+mean_count <- mean(fish$count)
+mean_count
+```
+
+The average count in the fish data set was 4.89. This value is *hard coded* and will need to be manually typed out and updated when necessary.
+
+### In-Line Code...  
+
+#### ...With Evaluation  
+
+The average count in the fish data set was `r mean_count`.
+
+The average count in the fish data set was `r round(mean_count, 2)`.
+
+The average count in the fish data set was `r round(mean(fish$count), 2)`.
+
+#### ...Without Evaluation
+
+The average `count` in the fish data set was `r round(mean(fish$count), 2)`.
+
+### Exercise 3  
+
+Fill in the blanks with in-line code; the first blank will be the average `area` and the second blank will either be "greater than" or "less than". Make sure that the reader can see that "area" is the name of a variable. 
+
+The average area sampled in the fish data set was _____, which is _____ 10.
+
+*Solution:*  
+
+The average `area` sampled in the fish data set was `r mean(fish$area)`, which is `r ifelse(mean(fish$area) > 10, "greater than", "less than")` 10.
+
+### Doing More with Code Chunks  
+
+*I don't want my code to be displayed in the document*
+
+```{r, echo = FALSE}
+2 + 2
+```
+
+*I want my code to be displayed in the document but I don't want it to be evaluated*
+
+```{r, eval = FALSE}
+2 + 2
+```
+
+*I want my input code and output code to be displayed as a single block*
+```{r, collapse = TRUE}
+2 + 2
+```
+
+*I don't want warnings or messages to be displayed as output in the document*  
+
+```{r, warning = FALSE, message = FALSE}
+library(ggplot2)
+library(dplyr)
+```
+
+*I want to name this chunk of code so I can easily find it later*
+```{r packages, warning = FALSE, message = FALSE}
+library(ggplot2)
+library(dplyr)
+```
+
+### Figures in RMarkdown  
+
+Figures appear in-line in the document.  
+
+```{r plot1}
+ggplot(fish) + 
+  geom_point(aes(x = year, y = count, col = site)) +
+  theme_bw() +
+  labs(x = "Year", y = "Number of Fish", col = "Site ID")
+```
+
+### Exercise 4  
+
+Create a figure; use the RMarkdown cheat sheet to figure out how to use options to resize the figure and align it to the center of the document page.  
+
+```{r plot2, fig.align = 'center', fig.width = 4, fig.height = 7}
+ggplot(fish) + 
+  geom_bar(aes(x = site, fill = habitat)) +
+  theme_bw() +
+  labs(x = "Site", y = "Number of Records", fill = "Habitat")
+```
+
+*Note:* Click [here](#topofpage) to go back to the header called Header 1.  
+
+### Patchwork  
+Patchwork is a package for arranging ggplots!
+
+The `+` operator simply combines plots without telling patchwork anything about the desired layout. For the special case of putting plots besides each other or on top of each other patchwork provides two shortcut operators. `|` will place plots next to each other while `/` will place them on top of each other. 
+
+```{r echo = FALSE, message = FALSE}
+library(patchwork)
+
+p1 <- ggplot(fish) +
+  geom_bar(aes(x = site)) +
+  theme_bw()
+
+p2 <- ggplot(fish) +
+  geom_point(aes(x = year, y = count)) +
+  theme_bw()
+
+p3 <- ggplot(fish) +
+  geom_histogram(aes(x = area))
+```
+
+```{r, message = FALSE}
+# Arrange all three plots together
+p1 + p2 + p3
+
+```
+
+```{r, message = FALSE}
+# Arrange plots 1 and 2 above plot 3
+(p1 | p2) / p3
+```
+
+
+```{r, message = FALSE}
+# Arrange plots 1 and 2 above plot 3
+# use theme_classic for all plots
+(p1 | p2) / p3 & theme_classic()
+```
+
+### Exercise 5  
+
+![](screen2.png){width=75%}
+
+Write the code used to generate the screen shot above.  
+
+```{r, message = FALSE}
+p4 <- ggplot(fish) + 
+  geom_boxplot(aes(x = site, y = area))
+
+(p1 | p2) / p3 & theme_classic() | p4
+```
+
+### Tables in RMarkdown  
+
+Data frames (tables) are printed in standard output format. 
+
+```{r}
+fish %>%
+  group_by(site) %>%
+  summarise(mean_count = mean(count))
+```
+
+The `rmarkdown` package has a built in function called `kable()` which is used for producing "nicely" formatted tables.  
+
+```{r}
+library(knitr)
+
+fish %>%
+  group_by(site) %>%
+  summarise(mean_count = mean(count)) %>%
+  kable()
+```
+
+The `kableExtra` package is specifically used to further enhance tables created using `kable()`.  
+
+```{r}
+library(kableExtra)
+
+table1 <- fish %>%
+  group_by(site) %>%
+  summarise(mean_count = mean(count)) %>%
+  kable()
+```
+
+```{r}
+# Make the first row bold and italic
+table1 %>%
+  row_spec(1, bold = TRUE, italic = TRUE)
+
+```
+
+```{r}
+# Make the first column have a black background and white font
+table1 %>%
+  column_spec(1, background = "black", color = "white")
+
+```
+
+Use `?kable_styling()` to explore the many optional arguments this function has; try using `full_width`, `font_size`, and `position`.
+
+```{r}
+# Change the font size
+table1 %>%
+  kable_styling(font_size = 8, full_width = FALSE, position = "center")
+
+
+```
+
+
+### Interactive Components  
+
+Create a drop down menu that allows a user to select a site from the list:  
+
+```{r}
+library(shiny)
+selectInput(inputId = "site", label = "Choose Site", choices = unique(fish$site))
+```
+
+The figure is updated based on the users selection:  
+
+```{r}
+renderPlot(ggplot(fish %>%
+                    filter(site == input$site)) +
+             geom_point(aes(x = year, y = count)))
+```
+
+### Maps in RMarkdown
+
+First we need to find some data that includes latitude and longitude.
+
+```{r}
+library(leaflet)
+parks <- read.delim("parks_updated.txt")
+```
+
+**Creating a Map**  
+
+```{r map1}
+leaflet(parks) %>%
+  addTiles() %>%
+  addCircleMarkers(lng = ~longitude, lat = ~latitude)
+```
+
+**Adding Popup Labels**  
+
+```{r map2}
+leaflet(parks) %>%
+  addTiles() %>%
+  addCircleMarkers(lng = ~longitude, lat = ~latitude, popup = ~park_name)
+```
+
+### More Features  
+
+- Table of Contents 
+- Code Folding  
+- Parameterization  
+
+### More Resources  
+[Bookdown: An Extension of RMarkdown for Writing Digital Books](https://bookdown.org/yihui/rmarkdown-cookbook/)
