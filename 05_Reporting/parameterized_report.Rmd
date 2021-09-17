@@ -1,0 +1,25 @@
+---
+title: "Parameterized Report"
+author: "Danielle Quinn"
+date: "17/09/2021"
+output: html_document
+params:
+  site: A
+---
+
+```{r, echo = FALSE, warning = FALSE, message = FALSE}
+library(dplyr)
+library(ggplot2)
+
+use_data <- read.delim("fish.txt") %>%
+  filter(site == params$site)
+```
+
+This report is based on site `r params$site`. This site has `r nrow(use_data)` records associated with it.
+
+```{r}
+ggplot(use_data) +
+  geom_point(aes(x = year, y = count)) +
+  theme_bw() +
+  ggtitle(paste("Site", params$site))
+```
